@@ -3,19 +3,15 @@ package org.example;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-
 
 ArrayList<Integer> counts = new ArrayList<Integer>();
 ArrayList<String> inputArr = new ArrayList<String>();
 try{
     File input = new File("H:\\Java\\Advent of code\\AdventofCode1\\input.txt");
     Scanner fileScanner = new Scanner(input);
-    StringBuilder inString = new StringBuilder();
 
     while(fileScanner.hasNextLine()) {
         inputArr.add(fileScanner.nextLine());
@@ -30,16 +26,25 @@ try{
             count = 0;
         }
     }
-
-    int highElf = 0;
     int highCount = 0;
-    for(int i = 0; i< counts.size();i++){
-        if(counts.get(i) > highCount){
-            highCount = counts.get(i);
-            highElf = i;
+int small;
+    for(int i = 0; i < counts.size()-1;i++){
+        small = i;
+        for(int j = 0; j< counts.size();j++){
+            if(counts.get(j)< counts.get(small)){
+                small = j;
+
+                int temp = counts.get(i);
+                counts.set(i,counts.get(small));
+                counts.set(small, temp);
+            }
         }
     }
-    System.out.println("The hgihest count was: " + highCount + " and the elf that had this count was " + highElf + 1);
+    highCount = counts.get(0);
+    System.out.println("The highest count was: " + highCount);
+    highCount = counts.get(0) + counts.get(1) + counts.get(2);
+    System.out.println("The highest three counts were: " + highCount);
+
     } catch(FileNotFoundException e){
     System.out.println("an error occurred");
     e.printStackTrace();
