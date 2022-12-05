@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-     File file = new File("H:\\Java\\Advent of code 2015\\AdventofCode3\\input.txt");
+     File file = new File("src/main/resources/input.txt");
         Scanner scan = new Scanner(file);
         int count = 0;
        ArrayList<Character> results = new ArrayList<>();
